@@ -1,0 +1,7 @@
+{
+  "name": "Adhivakta Flow",
+  "description": "A comprehensive Legal Case & Advocate Workflow SaaS platform for Indian lawyers featuring case management, AI drafting, and bilingual support (English/Hindi).",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
