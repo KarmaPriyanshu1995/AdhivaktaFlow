@@ -7,7 +7,9 @@ import {
   FileText, 
   CreditCard, 
   Settings,
-  Scale
+  Scale,
+  UserCog,
+  HardDrive
 } from 'lucide-react';
 import { LanguageStrings } from '../types';
 
@@ -23,7 +25,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, setCurrentTab, str
     { id: 'cases', label: strings.cases, icon: Briefcase },
     { id: 'clients', label: strings.clients, icon: Users },
     { id: 'calendar', label: strings.calendar, icon: CalendarIcon },
+    { id: 'evidence', label: strings.evidenceLocker, icon: HardDrive },
     { id: 'ai-drafts', label: strings.aiDrafts, icon: FileText },
+    { id: 'team', label: strings.team, icon: UserCog },
     { id: 'billing', label: strings.billing, icon: CreditCard },
   ];
 

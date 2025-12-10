@@ -15,19 +15,34 @@ import { LanguageStrings } from '../types';
 
 interface LandingPageProps {
   onLogin: () => void;
+  onSignup: () => void;
   language: 'English' | 'Hindi';
   setLanguage: React.Dispatch<React.SetStateAction<'English' | 'Hindi'>>;
   strings: LanguageStrings;
 }
 
-export const LandingPage: React.FC<LandingPageProps> = ({ onLogin, language, setLanguage, strings }) => {
+export const LandingPage: React.FC<LandingPageProps> = ({ 
+  onLogin, 
+  onSignup,
+  language, 
+  setLanguage, 
+  strings 
+}) => {
+  
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
       
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 glass border-b border-slate-200/50">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
               <Scale size={20} />
             </div>
@@ -35,9 +50,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin, language, set
           </div>
 
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-            <a href="#features" className="hover:text-blue-600 transition-colors">{strings.features}</a>
-            <a href="#pricing" className="hover:text-blue-600 transition-colors">{strings.pricing}</a>
-            <a href="#testimonials" className="hover:text-blue-600 transition-colors">{strings.testimonials}</a>
+            <button onClick={() => scrollToSection('features')} className="hover:text-blue-600 transition-colors">{strings.features}</button>
+            <button onClick={() => scrollToSection('pricing')} className="hover:text-blue-600 transition-colors">{strings.pricing}</button>
+            <button onClick={() => scrollToSection('testimonials')} className="hover:text-blue-600 transition-colors">{strings.testimonials}</button>
           </div>
 
           <div className="flex items-center gap-4">
@@ -51,7 +66,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin, language, set
             <button onClick={onLogin} className="text-slate-600 font-medium hover:text-blue-600 px-4 py-2 transition-colors">
               {strings.login}
             </button>
-            <button onClick={onLogin} className="bg-slate-900 text-white px-5 py-2.5 rounded-xl font-medium hover:bg-slate-800 transition-all shadow-lg shadow-slate-200 hover:shadow-xl">
+            <button onClick={onSignup} className="bg-slate-900 text-white px-5 py-2.5 rounded-xl font-medium hover:bg-slate-800 transition-all shadow-lg shadow-slate-200 hover:shadow-xl">
               {strings.signUp}
             </button>
           </div>
@@ -73,7 +88,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin, language, set
             {strings.heroSubtitle}
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-            <button onClick={onLogin} className="px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold text-lg hover:bg-blue-700 transition-all shadow-xl shadow-blue-200 flex items-center gap-2 group">
+            <button onClick={onSignup} className="px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold text-lg hover:bg-blue-700 transition-all shadow-xl shadow-blue-200 flex items-center gap-2 group">
               {strings.startTrial}
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
@@ -96,7 +111,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin, language, set
       </section>
 
       {/* Features Grid */}
-      <section id="features" className="py-24 bg-white">
+      <section id="features" className="py-24 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">{strings.features}</h2>
@@ -139,7 +154,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin, language, set
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-24 bg-slate-50">
+      <section id="pricing" className="py-24 bg-slate-50 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6">
            <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">{strings.pricing}</h2>
@@ -160,7 +175,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin, language, set
                  <span className="text-slate-500">/month</span>
                </div>
                <p className="text-slate-500 mb-8 text-sm">Perfect for independent advocates starting their digital journey.</p>
-               <button onClick={onLogin} className="w-full py-3 border border-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition-colors mb-8">
+               <button onClick={onSignup} className="w-full py-3 border border-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition-colors mb-8">
                  Start Basic Trial
                </button>
                <ul className="space-y-4">
@@ -180,7 +195,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin, language, set
                  <span className="text-slate-500">/month</span>
                </div>
                <p className="text-slate-500 mb-8 text-sm">For established firms requiring advanced AI and team tools.</p>
-               <button onClick={onLogin} className="w-full py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 mb-8">
+               <button onClick={onSignup} className="w-full py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 mb-8">
                  Start Pro Trial
                </button>
                <ul className="space-y-4">
@@ -196,7 +211,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin, language, set
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="py-24 bg-white">
+      <section id="testimonials" className="py-24 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-slate-900 mb-16 text-center">{strings.testimonials}</h2>
           <div className="grid md:grid-cols-3 gap-8">

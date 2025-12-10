@@ -4,13 +4,23 @@ import { LanguageStrings } from '../types';
 
 interface LoginPageProps {
   onLoginSuccess: () => void;
+  onSignupClick: () => void;
+  onForgotPassword: () => void;
   onBack: () => void;
   language: 'English' | 'Hindi';
   setLanguage: React.Dispatch<React.SetStateAction<'English' | 'Hindi'>>;
   strings: LanguageStrings;
 }
 
-export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, onBack, language, setLanguage, strings }) => {
+export const LoginPage: React.FC<LoginPageProps> = ({ 
+  onLoginSuccess, 
+  onSignupClick,
+  onForgotPassword,
+  onBack, 
+  language, 
+  setLanguage, 
+  strings 
+}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -109,9 +119,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, onBack, la
             </div>
 
             <div className="flex justify-end">
-              <a href="#" className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline">
+              <button 
+                type="button" 
+                onClick={onForgotPassword}
+                className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline"
+              >
                 {strings.forgotPassword}
-              </a>
+              </button>
             </div>
 
             <button 
@@ -170,9 +184,9 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, onBack, la
 
           <p className="mt-8 text-center text-sm text-slate-500">
             {strings.dontHaveAccount}{' '}
-            <a href="#" className="font-semibold text-blue-600 hover:text-blue-700 hover:underline">
+            <button onClick={onSignupClick} className="font-semibold text-blue-600 hover:text-blue-700 hover:underline">
               {strings.signUp}
-            </a>
+            </button>
           </p>
         </div>
       </div>
